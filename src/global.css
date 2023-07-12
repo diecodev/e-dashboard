@@ -1,13 +1,3 @@
-/**
- * PandaCSS CSS layers
- * View the full documentation at https://panda-css.com/docs/concepts/cascade-layers#layer-css
- */
-@layer reset,
-base,
-tokens,
-recipes,
-utilities;
-
 :root {
   --qwik-dark-blue: #006ce9;
   --qwik-light-blue: #18b6f6;

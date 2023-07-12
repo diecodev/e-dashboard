@@ -20,7 +20,7 @@
     "paths": {
       "~/*": ["./src/*"],
       "@db": ["./db/index.ts"],
-      "@db/schemas": ["./db/schemas.ts"], 
+      "@db/schemas": ["./db/schemas.ts"]
     }
   },
   "files": ["./.eslintrc.cjs"],

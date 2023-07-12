@@ -1,15 +1,16 @@
 import { component$ } from "@builder.io/qwik";
 import { Form } from "@builder.io/qwik-city";
 import { useLoginAction } from "~/routes/login";
+import { Input } from "../basics/input";
 
 export const LoginForm = component$(() => {
   const action = useLoginAction();
 
   return (
-    <Form action={action}>
+    <Form action={action} class="">
       <label>
         <span>Email</span>
-        <input type="email" name="email" required minLength={6} />
+        <Input type="email" name="email" required minLength={6} />
       </label>
       <label>
         <span>Password</span>
