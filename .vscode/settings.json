@@ -45,4 +45,7 @@
       "icon": "alert"
     }
   },
+  "conventionalCommits.scopes": [
+    "Config"
+  ],
 }

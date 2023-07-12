@@ -3,7 +3,9 @@
     "dbaeumer.vscode-eslint",
     "unifiedjs.vscode-mdx",
     "Gruntfuggly.todo-tree",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "seatonjiang.gitmoji-vscode",
+    "vivaxy.vscode-conventional-commits"
   ],
   "unwantedRecommendations": []
 }
