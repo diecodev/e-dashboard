@@ -55,4 +55,5 @@
     "Config",
     "Login"
   ],
+  "css.lint.unknownAtRules": "ignore",
 }
