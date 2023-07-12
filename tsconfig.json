@@ -19,7 +19,8 @@
     "types": ["node", "vite/client"],
     "paths": {
       "~/*": ["./src/*"],
-      "@db": ["./db/index.ts"]
+      "@db": ["./db/index.ts"],
+      "@db/schemas": ["./db/schemas.ts"], 
     }
   },
   "files": ["./.eslintrc.cjs"],

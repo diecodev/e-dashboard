@@ -52,6 +52,7 @@
     }
   },
   "conventionalCommits.scopes": [
-    "Config"
+    "Config",
+    "Login"
   ],
 }
