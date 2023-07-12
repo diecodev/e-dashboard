@@ -1,3 +1,48 @@
 {
-  "material-icon-theme.activeIconPack": "qwik"
+  "material-icon-theme.activeIconPack": "qwik",
+  "todo-tree.tree.showBadges": true,
+  "todo-tree.general.tags": [
+    "BUG",
+    "HACK",
+    "FIXME",
+    "TODO",
+    "WARN",
+    "README",
+    "REF",
+    "XXX",
+    "[ ]",
+    "[x]"
+  ],
+  "todo-tree.highlights.customHighlight": {
+    "BUG": {
+      "icon": "bug"
+    },
+    "HACK": {
+      "icon": "tools"
+    },
+    "FIXME": {
+      "icon": "flame"
+    },
+    "XXX": {
+      "icon": "x"
+    },
+    "[ ]": {
+      "icon": "issue-draft"
+    },
+    "[x]": {
+      "icon": "issue-closed"
+    },
+    "README": {
+      "icon": "book"
+    },
+    "REF": {
+      "icon": "repo-forked"
+    },
+    "TODO": {
+      "icon": "check"
+    },
+    "WARN": {
+      "icon": "alert"
+    }
+  },
 }

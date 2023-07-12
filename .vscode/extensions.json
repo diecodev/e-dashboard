@@ -1,4 +1,9 @@
 {
-  "recommendations": ["dbaeumer.vscode-eslint", "unifiedjs.vscode-mdx"],
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "unifiedjs.vscode-mdx",
+    "Gruntfuggly.todo-tree",
+    "esbenp.prettier-vscode"
+  ],
   "unwantedRecommendations": []
 }
