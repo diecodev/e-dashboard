@@ -1,6 +1,12 @@
 {
   "material-icon-theme.activeIconPack": "qwik",
   "todo-tree.tree.showBadges": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "todo-tree.general.tags": [
     "BUG",
     "HACK",

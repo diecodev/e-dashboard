@@ -2,7 +2,8 @@ import type { Session } from "@auth/core/types";
 import { component$, Slot } from "@builder.io/qwik";
 import { routeLoader$ } from "@builder.io/qwik-city";
 import type { RequestHandler } from "@builder.io/qwik-city";
-import {  db } from "@db";import { admins } from "../../db/schemas";
+import { db } from "@db";
+import { admins } from "../../db/schemas";
 
 export const onGet: RequestHandler = async ({ cacheControl }) => {
   // Control caching for this request for best performance and to reduce hosting costs:
@@ -22,7 +23,7 @@ export const onRequest: RequestHandler = async (event) => {
   // }
   const allAdmins = await db.select().from(admins);
 
-  console.log(allAdmins);
+  console.log({ allAdmins });
 };
 
 export const useServerTimeLoader = routeLoader$(() => {

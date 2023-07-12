@@ -3,7 +3,7 @@
 [ ] Create Tags Form (categories)
 [ ] Create Product Form
 [ ] Upload Pics to Cloudinary Before Push Product Data to DB
-[ ] Config Drizzle
+[x] Config Drizzle
 [ ] Create Drizzle queries
 [ ] Logout User Form
 [ ] Create Discount Form
