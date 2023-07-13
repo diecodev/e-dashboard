@@ -1,9 +1,8 @@
-import type { Session } from "@auth/core/types";
 import { component$, Slot } from "@builder.io/qwik";
 import { routeLoader$ } from "@builder.io/qwik-city";
 import type { RequestHandler } from "@builder.io/qwik-city";
-import { db } from "@db";
-import { admins } from "../../db/schemas";
+import { containerClass } from "~/components/basics/styles";
+import { COOKIE_SESSION } from "~/libs/constants";
 
 export const onGet: RequestHandler = async ({ cacheControl }) => {
   // Control caching for this request for best performance and to reduce hosting costs:
@@ -16,14 +15,17 @@ export const onGet: RequestHandler = async ({ cacheControl }) => {
   });
 };
 
-export const onRequest: RequestHandler = async (event) => {
-  // const session: Session | null = event.sharedMap.get('session');
-  // if ((!session || new Date(session.expires) < new Date()) && !event.url.pathname.startsWith('/api/auth')) {
-  //   throw event.redirect(302, `/api/auth/signin?callbackUrl=${event.url.href}`);
-  // }
-  const allAdmins = await db.select().from(admins);
+export const onRequest: RequestHandler = async ({
+  cookie,
+  redirect,
+  next,
+  url,
+}) => {
+  if (!cookie.has(COOKIE_SESSION) && !url.pathname.startsWith("/login")) {
+    throw redirect(302, "/login");
+  }
 
-  console.log({ allAdmins });
+  await next();
 };
 
 export const useServerTimeLoader = routeLoader$(() => {
@@ -35,7 +37,7 @@ export const useServerTimeLoader = routeLoader$(() => {
 export default component$(() => {
   return (
     <>
-      <main class="">
+      <main class={containerClass}>
         <Slot />
       </main>
     </>

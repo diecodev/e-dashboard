@@ -1,4 +1,5 @@
 import { type QwikIntrinsicElements, component$ } from "@builder.io/qwik";
+import { inputClass } from "./styles";
 
 interface Props extends Omit<QwikIntrinsicElements["input"], "class"> {
   className?: string;
@@ -7,6 +8,6 @@ interface Props extends Omit<QwikIntrinsicElements["input"], "class"> {
 export const Input = component$<Props>(({ className = "", ...props }) => {
   return (
     // @ts-ignore
-    <input class={[className]} {...props} />
+    <input class={[inputClass, className]} {...props} />
   );
 });

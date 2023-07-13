@@ -1,27 +1,52 @@
 import { component$ } from "@builder.io/qwik";
+import type { CookieOptions } from "@builder.io/qwik-city";
 import { routeAction$, z, zod$ } from "@builder.io/qwik-city";
 import { db } from "@db";
 import { LoginForm } from "~/components/login";
 import { admins } from "@db/schemas";
 import { eq } from "drizzle-orm";
 import bcrypt from "bcrypt";
+import { COOKIE_SESSION } from "~/libs/constants";
 
+/*
+  README: Login credentials:
+  Email: admin@admin.com
+  Password: admin_!23
+ */
 export const useLoginAction = routeAction$(
-  async (formData, event) => {
+  async (formData, { fail, cookie, redirect }) => {
     const adminResult = await db
       .select({ id: admins.id, password: admins.password })
       .from(admins)
       .where(eq(admins.email, formData.email));
 
-    if (!adminResult.length) {
-      return event.fail(401, { message: "Invalid credentials" });
+    if (adminResult.length === 0) {
+      throw fail(401, {
+        message: "Your credentials are invalid. Please try again.",
+      });
     }
 
-    if (!bcrypt.compareSync(formData.password, adminResult[0].password)) {
-      return event.fail(401, { message: "Invalid credentials" });
+    const isValidPassword = await bcrypt.compare(
+      formData.password,
+      adminResult[0].password
+    );
+
+    if (!isValidPassword) {
+      throw fail(401, {
+        message: "Your credentials are invalid. Please try again.",
+      });
     }
 
-    event.redirect(302, "/admin");
+    const newCookieSession: CookieOptions = {
+      httpOnly: true,
+      path: "/",
+      secure: true,
+      sameSite: "strict",
+      maxAge: 60 * 60 * 24 * 7,
+    };
+
+    cookie.set(COOKIE_SESSION, adminResult[0].id, newCookieSession);
+    throw redirect(302, "/");
   },
   zod$({
     email: z.string().email().min(6),

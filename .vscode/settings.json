@@ -53,7 +53,15 @@
   },
   "conventionalCommits.scopes": [
     "Config",
-    "Login"
+    "Login",
+    "Docs"
   ],
   "css.lint.unknownAtRules": "ignore",
+  "exportall.config.folderListener": [
+    "/src/components/basics"
+  ],
+  "exportall.config.relExclusion": [
+    "/src/components/basics/index.ts",
+    "/src/components/basics/styles"
+  ],
 }
