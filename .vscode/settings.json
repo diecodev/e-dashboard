@@ -56,4 +56,7 @@
     "Login"
   ],
   "css.lint.unknownAtRules": "ignore",
+  "exportall.config.folderListener": [
+    "/src/components/basics"
+  ],
 }

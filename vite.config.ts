@@ -2,15 +2,15 @@ import { defineConfig } from "vite";
 import { qwikVite } from "@builder.io/qwik/optimizer";
 import { qwikCity } from "@builder.io/qwik-city/vite";
 import tsconfigPaths from "vite-tsconfig-paths";
-import { macroPlugin } from "@builder.io/vite-plugin-macro";
+import {vanillaExtractPlugin} from '@vanilla-extract/vite-plugin'
 
 export default defineConfig(() => {
   return {
     plugins: [
-      macroPlugin({ preset: "pandacss" }),
       qwikCity(),
       qwikVite(),
       tsconfigPaths(),
+      vanillaExtractPlugin(),
     ],
     preview: {
       headers: {
