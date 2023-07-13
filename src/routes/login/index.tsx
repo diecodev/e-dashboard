@@ -21,7 +21,7 @@ export const useLoginAction = routeAction$(
       .where(eq(admins.email, formData.email));
 
     if (adminResult.length === 0) {
-      throw fail(401, {
+      return fail(401, {
         message: "Your credentials are invalid. Please try again.",
       });
     }
@@ -32,7 +32,7 @@ export const useLoginAction = routeAction$(
     );
 
     if (!isValidPassword) {
-      throw fail(401, {
+      return fail(401, {
         message: "Your credentials are invalid. Please try again.",
       });
     }
