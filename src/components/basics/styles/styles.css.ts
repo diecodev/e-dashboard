@@ -50,7 +50,7 @@ globalStyle("h1, h2, h3, h4, h5, h6", {
   fontFamily: `"${SECONDARY_FONT}", "${PRIMARY_FONT}", "${PRIMARY_FONT_HEADER_FALLBACK}", -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"`,
   marginTop: 0,
   marginBottom: 0,
-  fontFeatureSettings: ["liga", "ss02"],
+  fontFeatureSettings: '"liga", "ss02"',
 });
 
 export const containerClass = style({ minHeight: "100dvh" });
@@ -96,7 +96,7 @@ export const fieldsetClass = style([
     },
 
     border: "none",
-    gap: "0.5rem",
+    gap: "0.25rem",
     padding: 0,
     margin: 0,
   },
@@ -150,3 +150,25 @@ export const buttonPrimaryClass = style([
     fontWeight: 500,
   },
 ]);
+
+export const errorMessageClass = style([
+  {
+    vars: {
+      [baseColor]: "rgba(255, 0, 0)",
+    },
+
+    fontSize: "0.8125rem",
+    color: baseColor,
+    fontWeight: 600,
+    margin: 0,
+    textAlign: "center",
+  },
+]);
+
+export const importantTitleClass = style({
+  fontSize: "1.5rem",
+  fontWeight: 600,
+  textAlign: "center",
+  margin: "1rem 0",
+  lineHeight: 1.2,
+});
