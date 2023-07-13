@@ -59,4 +59,7 @@
   "exportall.config.folderListener": [
     "/src/components/basics"
   ],
+  "exportall.config.relExclusion": [
+    "/src/components/basics/index.ts"
+  ],
 }
