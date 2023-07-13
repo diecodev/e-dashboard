@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import type { CookieOptions, type RequestHandler } from "@builder.io/qwik-city";
+import type { CookieOptions } from "@builder.io/qwik-city";
 import { routeAction$, z, zod$ } from "@builder.io/qwik-city";
 import { db } from "@db";
 import { LoginForm } from "~/components/login";
@@ -8,11 +8,10 @@ import { eq } from "drizzle-orm";
 import bcrypt from "bcrypt";
 import { COOKIE_SESSION } from "~/libs/constants";
 
-/**
- * @description
- * Fake user info:
- * - email: admin@admin.com
- * - password: admin_123
+/*
+  README: Login credentials:
+  Email: admin@admin.com
+  Password: admin_!23
  */
 export const useLoginAction = routeAction$(
   async (formData, { fail, cookie, redirect }) => {
