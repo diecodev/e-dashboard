@@ -2,14 +2,14 @@ import { type QwikIntrinsicElements, component$, Slot } from "@builder.io/qwik";
 import { buttonPrimaryClass } from "./styles";
 
 interface Props extends Omit<QwikIntrinsicElements["button"], "class"> {
-  className?: string;
+  classArr?: string | string[];
 }
 
 export const ButtonPrimary = component$<Props>(
-  ({ className = "", ...props }) => {
+  ({ classArr = "", ...props }) => {
     return (
       // @ts-ignore
-      <button class={[buttonPrimaryClass, className]} {...props}>
+      <button class={[buttonPrimaryClass, classArr]} {...props}>
         <Slot />
       </button>
     );

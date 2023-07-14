@@ -4,8 +4,9 @@ import {
   globalStyle,
   style,
 } from "@vanilla-extract/css";
-import { recipe } from "@vanilla-extract/recipes";
+import { recipe, type RecipeVariants } from "@vanilla-extract/recipes";
 import { BASE_COLOR, BASE_COLOR_SHADOW } from "~/libs/constants";
+import { HUBOT_SANS_B64, MONDA_SANS_B64 } from "~/libs/fonts";
 
 export const primaryColor = createVar();
 export const boxShadowValues = createVar();
@@ -14,42 +15,28 @@ export const rounded = createVar();
 export const baseColor = createVar();
 
 const PRIMARY_FONT = "Mona Sans";
-const PRIMARY_FONT_FALLBACK = "Mona Sans Fallback";
-const PRIMARY_FONT_HEADER_FALLBACK = "Mona Sans Header Fallback";
 const SECONDARY_FONT = "Hubot Sans";
 
 globalFontFace(PRIMARY_FONT, {
-  src: 'local("Mona Sans"), url("/fonts/Mona-Sans.woff2") format("woff2 supports variations"), url("/fonts/Mona-Sans.woff2") format("woff2-variations")',
+  src: `local("Mona Sans"), url(${MONDA_SANS_B64})`,
   fontWeight: "200 900",
   fontStretch: "75% 125%",
   fontDisplay: "swap",
 });
 
-globalFontFace(PRIMARY_FONT_FALLBACK, {
-  src: "local(Arial)",
-  sizeAdjust: "108.5%",
-  ascentOverride: "82%",
-});
-
-globalFontFace(PRIMARY_FONT_HEADER_FALLBACK, {
-  sizeAdjust: "102.7%",
-  ascentOverride: "82%",
-  src: "local(Arial Bold)",
-});
-
 globalFontFace(SECONDARY_FONT, {
-  src: 'local("Hubot Sans"), url("/fonts/Hubot-Sans.woff2") format("woff2 supports variations"), url("/fonts/Hubot-Sans.woff2") format("woff2-variations")',
+  src: `local("Hubot Sans"), url(${HUBOT_SANS_B64})`,
   fontWeight: "200 900",
   fontStretch: "75% 125%",
   fontDisplay: "swap",
 });
 
 globalStyle("html, body, button, input, optgroup, select, textarea", {
-  fontFamily: `"${PRIMARY_FONT}", "${PRIMARY_FONT_FALLBACK}", -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"`,
+  fontFamily: `"${PRIMARY_FONT}",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"`,
 });
 
 globalStyle("h1, h2, h3, h4, h5, h6", {
-  fontFamily: `"${SECONDARY_FONT}", "${PRIMARY_FONT}", "${PRIMARY_FONT_HEADER_FALLBACK}", -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"`,
+  fontFamily: `"${SECONDARY_FONT}","${PRIMARY_FONT}",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"`,
   marginTop: 0,
   marginBottom: 0,
   fontFeatureSettings: '"liga", "ss02"',
@@ -63,7 +50,82 @@ export const flexColumnClass = style({ flexDirection: "column" });
 
 export const flexRowClass = style({ flexDirection: "row" });
 
-export const gapClass = style({ gap: "1rem" });
+export const gapClass = recipe({
+  base: {
+    gap: "1rem",
+  },
+  variants: {
+    size: {
+      small: {
+        gap: "0.5rem",
+      },
+      medium: {
+        gap: "1rem",
+      },
+      large: {
+        gap: "1.5rem",
+      },
+    },
+  },
+  defaultVariants: {
+    size: "medium",
+  },
+});
+
+export const flexItemsClass = recipe({
+  variants: {
+    justify: {
+      start: {
+        justifyContent: "flex-start",
+      },
+      center: {
+        justifyContent: "center",
+      },
+      end: {
+        justifyContent: "flex-end",
+      },
+      between: {
+        justifyContent: "space-between",
+      },
+      around: {
+        justifyContent: "space-around",
+      },
+      evenly: {
+        justifyContent: "space-evenly",
+      },
+    },
+    align: {
+      start: {
+        alignItems: "flex-start",
+      },
+      center: {
+        alignItems: "center",
+      },
+      end: {
+        alignItems: "flex-end",
+      },
+      stretch: {
+        alignItems: "stretch",
+      },
+      baseline: {
+        alignItems: "baseline",
+      },
+    },
+    flex: {
+      1: {
+        flex: 1,
+      },
+      auto: {
+        flex: "auto",
+      },
+    },
+  },
+  defaultVariants: {
+    justify: "start",
+    align: "start",
+    flex: "auto",
+  },
+});
 
 export const buttonPaddingClass = style({ padding: "0.5rem 1rem" });
 
@@ -71,7 +133,7 @@ export const formClass = recipe({
   base: [
     flexClass,
     flexColumnClass,
-    gapClass,
+    gapClass(),
     {
       vars: {
         [primaryColor]: `rgb(${BASE_COLOR})`,
@@ -80,9 +142,6 @@ export const formClass = recipe({
         [rounded]: "6px",
         [baseColor]: "#181616",
       },
-
-      justifyContent: "center",
-      alignItems: "stretch",
       margin: "0 auto",
       padding: "1rem",
       width: "100%",
@@ -92,7 +151,7 @@ export const formClass = recipe({
   variants: {
     size: {
       small: { maxWidth: 400 },
-      medium: { maxWidth: 800 },
+      medium: { maxWidth: 680 },
       large: { maxWidth: 1200 },
     },
   },
@@ -152,10 +211,10 @@ export const buttonPrimaryClass = style([
   buttonPaddingClass,
   {
     backgroundColor: primaryColor,
-    border: "none",
     borderRadius: rounded,
     color: "#fff",
     fontWeight: 500,
+    border: `1px solid ${primaryColor}`,
   },
 ]);
 
@@ -227,3 +286,33 @@ export const importantTitleClass = recipe({
     size: "large",
   },
 });
+
+export const iconClass = recipe({
+  base: {
+    display: "inline-block",
+    verticalAlign: "middle",
+    fill: "currentColor",
+    overflow: "hidden",
+  },
+  variants: {
+    size: {
+      small: {
+        width: "0.8em",
+        height: "0.8em",
+      },
+      medium: {
+        width: "1em",
+        height: "1em",
+      },
+      large: {
+        width: "1.25em",
+        height: "1.25em",
+      },
+    },
+  },
+  defaultVariants: {
+    size: "medium",
+  },
+});
+
+export type IconsVariants = RecipeVariants<typeof iconClass>;
