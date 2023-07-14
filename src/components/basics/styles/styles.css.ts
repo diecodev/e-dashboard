@@ -4,10 +4,12 @@ import {
   globalStyle,
   style,
 } from "@vanilla-extract/css";
+import { recipe } from "@vanilla-extract/recipes";
+import { BASE_COLOR, BASE_COLOR_SHADOW } from "~/libs/constants";
 
 export const primaryColor = createVar();
-export const primaryColorShadowValues = createVar();
-export const borderColor = createVar();
+export const boxShadowValues = createVar();
+export const shadowColor = createVar();
 export const rounded = createVar();
 export const baseColor = createVar();
 
@@ -61,39 +63,49 @@ export const flexColumnClass = style({ flexDirection: "column" });
 
 export const flexRowClass = style({ flexDirection: "row" });
 
-export const gapClass = style({ gap: "1.5rem" });
+export const gapClass = style({ gap: "1rem" });
 
 export const buttonPaddingClass = style({ padding: "0.5rem 1rem" });
 
-export const formClass = style([
-  flexClass,
-  flexColumnClass,
-  gapClass,
-  {
-    vars: {
-      [primaryColor]: "rgb(0, 153, 255)",
-      [primaryColorShadowValues]: "0 0 10px 1px",
-      [rounded]: "6px",
-      [baseColor]: "#1F2328",
-    },
+export const formClass = recipe({
+  base: [
+    flexClass,
+    flexColumnClass,
+    gapClass,
+    {
+      vars: {
+        [primaryColor]: `rgb(${BASE_COLOR})`,
+        [boxShadowValues]: "0 0 10px 1px",
+        [shadowColor]: `rgba(${BASE_COLOR_SHADOW}, 0.7)`,
+        [rounded]: "6px",
+        [baseColor]: "#181616",
+      },
 
-    justifyContent: "center",
-    alignItems: "stretch",
-    maxWidth: 400,
-    margin: "auto",
-    padding: "1rem",
-    width: "100%",
-    height: "100%",
+      justifyContent: "center",
+      alignItems: "stretch",
+      margin: "0 auto",
+      padding: "1rem",
+      width: "100%",
+      height: "100%",
+    },
+  ],
+  variants: {
+    size: {
+      small: { maxWidth: 400 },
+      medium: { maxWidth: 800 },
+      large: { maxWidth: 1200 },
+    },
   },
-]);
+  defaultVariants: {
+    size: "small",
+  },
+});
 
 export const fieldsetClass = style([
   flexClass,
   flexColumnClass,
   {
-    vars: {
-      [borderColor]: "rgba(0, 153, 255, 0.4)",
-    },
+    vars: {},
 
     border: "none",
     gap: "0.25rem",
@@ -116,7 +128,7 @@ export const inputClass = style([
 
     ":focus-within": {
       border: `1px solid ${primaryColor}`,
-      boxShadow: `${primaryColorShadowValues} ${borderColor}`,
+      boxShadow: `${boxShadowValues} ${shadowColor}`,
     },
   },
 ]);
@@ -130,8 +142,8 @@ export const labelClass = style({
 
   selectors: {
     [`${fieldsetClass}:has(${inputClass}:focus-within) &`]: {
+      fontWeight: 600,
       color: primaryColor,
-      fontWeight: 500,
     },
   },
 });
@@ -139,10 +151,6 @@ export const labelClass = style({
 export const buttonPrimaryClass = style([
   buttonPaddingClass,
   {
-    vars: {
-      [primaryColor]: "rgb(0, 153, 255)",
-    },
-
     backgroundColor: primaryColor,
     border: "none",
     borderRadius: rounded,
@@ -160,15 +168,62 @@ export const errorMessageClass = style([
     fontSize: "0.8125rem",
     color: baseColor,
     fontWeight: 600,
-    margin: 0,
+    margin: "0.5rem 0",
     textAlign: "center",
   },
 ]);
 
-export const importantTitleClass = style({
-  fontSize: "1.5rem",
-  fontWeight: 600,
-  textAlign: "center",
-  margin: "1rem 0",
-  lineHeight: 1.2,
+export const importantTitleClass = recipe({
+  base: {
+    lineHeight: 1.2,
+  },
+  variants: {
+    position: {
+      left: {
+        textAlign: "left",
+      },
+      center: {
+        textAlign: "center",
+      },
+      right: {
+        textAlign: "right",
+      },
+    },
+    weight: {
+      600: {
+        fontWeight: 600,
+      },
+      700: {
+        fontWeight: 700,
+      },
+      800: {
+        fontWeight: 800,
+      },
+    },
+    margin: {
+      0: {
+        margin: 0,
+      },
+      auto: {
+        margin: "1rem 0",
+      },
+    },
+    size: {
+      large: {
+        fontSize: "1.5rem",
+      },
+      medium: {
+        fontSize: "1.25rem",
+      },
+      small: {
+        fontSize: "1rem",
+      },
+    },
+  },
+  defaultVariants: {
+    position: "center",
+    weight: 700,
+    margin: "auto",
+    size: "large",
+  },
 });

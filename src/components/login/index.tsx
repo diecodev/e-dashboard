@@ -9,8 +9,8 @@ export const LoginForm = component$(() => {
 
   return (
     <>
-      <h2 class={importantTitleClass}>Sign in to UrDash</h2>
-      <Form action={action} class={[formClass]}>
+      <h2 class={importantTitleClass()}>Sign in to UrDash</h2>
+      <Form action={action} class={formClass()}>
         <Fieldset>
           <Label for="email">Email address</Label>
           <Input
