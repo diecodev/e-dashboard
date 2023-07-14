@@ -5,7 +5,11 @@ import {
   style,
 } from "@vanilla-extract/css";
 import { recipe, type RecipeVariants } from "@vanilla-extract/recipes";
-import { BASE_COLOR, BASE_COLOR_SHADOW } from "~/libs/constants";
+import {
+  BASE_COLOR,
+  BASE_COLOR_SHADOW,
+  SECONDARY_COLOR,
+} from "~/libs/constants";
 import { HUBOT_SANS_B64, MONDA_SANS_B64 } from "~/libs/fonts";
 
 export const primaryColor = createVar();
@@ -44,7 +48,7 @@ globalStyle("h1, h2, h3, h4, h5, h6", {
 
 export const containerClass = style({ minHeight: "100dvh" });
 
-export const flexClass = style({ display: "flex" });
+export const flexClass = style({ display: "flex", flexWrap: "wrap" });
 
 export const flexColumnClass = style({ flexDirection: "column" });
 
@@ -129,36 +133,24 @@ export const flexItemsClass = recipe({
 
 export const buttonPaddingClass = style({ padding: "0.5rem 1rem" });
 
-export const formClass = recipe({
-  base: [
-    flexClass,
-    flexColumnClass,
-    gapClass(),
-    {
-      vars: {
-        [primaryColor]: `rgb(${BASE_COLOR})`,
-        [boxShadowValues]: "0 0 10px 1px",
-        [shadowColor]: `rgba(${BASE_COLOR_SHADOW}, 0.7)`,
-        [rounded]: "6px",
-        [baseColor]: "#181616",
-      },
-      margin: "0 auto",
-      padding: "1rem",
-      width: "100%",
-      height: "100%",
+export const formClass = style([
+  flexClass,
+  flexColumnClass,
+  gapClass(),
+  {
+    vars: {
+      [primaryColor]: `rgb(${BASE_COLOR})`,
+      [boxShadowValues]: "0 0 10px 1px",
+      [shadowColor]: `rgba(${BASE_COLOR_SHADOW}, 0.7)`,
+      [rounded]: "6px",
+      [baseColor]: SECONDARY_COLOR,
     },
-  ],
-  variants: {
-    size: {
-      small: { maxWidth: 400 },
-      medium: { maxWidth: 680 },
-      large: { maxWidth: 1200 },
-    },
+    margin: "0 auto",
+    padding: "1rem",
+    width: "100%",
+    height: "100%",
   },
-  defaultVariants: {
-    size: "small",
-  },
-});
+]);
 
 export const fieldsetClass = style([
   flexClass,
@@ -315,4 +307,56 @@ export const iconClass = recipe({
   },
 });
 
+export const wrapperClass = recipe({
+  base: [
+    {
+      vars: {
+        [baseColor]: "#18161666",
+        [rounded]: "6px",
+      },
+
+      border: `1px solid ${baseColor}`,
+      margin: "0 auto",
+      borderRadius: rounded,
+      width: "100%",
+    },
+  ],
+  variants: {
+    border: {
+      0: {
+        borderWidth: 0,
+      },
+      1: {
+        borderWidth: 1,
+      },
+      2: {
+        borderWidth: 2,
+      },
+    },
+  },
+  defaultVariants: {
+    border: 1,
+  },
+});
+
+export const maxWidth = recipe({
+  base: {
+    width: "100%",
+    margin: "0 auto",
+    display: "flex",
+  },
+  variants: {
+    size: {
+      small: { maxWidth: 400 },
+      medium: { maxWidth: 680 },
+      large: { maxWidth: 1200 },
+    },
+  },
+  defaultVariants: {
+    size: "small",
+  },
+});
+
 export type IconsVariants = RecipeVariants<typeof iconClass>;
+export type WrapperVariants = RecipeVariants<typeof wrapperClass>;
+export type MaxWidthVariants = RecipeVariants<typeof maxWidth>;

@@ -8,6 +8,7 @@ import {
   formClass,
   gapClass,
   importantTitleClass,
+  maxWidth,
 } from "../basics/styles";
 import { PlusIcon } from "../icons";
 // import { useCategories } from "~/routes/tags";
@@ -16,7 +17,7 @@ export const SubcategoryForm = component$(() => {
   // const data = useCategories();
 
   return (
-    <Form class={[formClass({ size: "medium" })]}>
+    <Form class={[formClass, maxWidth({ size: "medium" })]}>
       <h2
         class={[
           importantTitleClass({
@@ -31,7 +32,8 @@ export const SubcategoryForm = component$(() => {
       </h2>
       <div
         class={[
-          formClass({ size: "medium" }),
+          formClass,
+          maxWidth({ size: "medium" }),
           flexClass,
           flexRowClass,
           gapClass(),

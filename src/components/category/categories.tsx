@@ -8,12 +8,13 @@ import {
   formClass,
   gapClass,
   importantTitleClass,
+  maxWidth,
 } from "../basics/styles";
 import { PlusIcon } from "../icons";
 
 export const CategoryForm = component$(() => {
   return (
-    <Form class={[formClass({ size: "medium" })]}>
+    <Form class={[formClass, maxWidth({ size: "medium" })]}>
       <h2
         class={[
           importantTitleClass({
@@ -28,7 +29,8 @@ export const CategoryForm = component$(() => {
       </h2>
       <div
         class={[
-          formClass({ size: "medium" }),
+          formClass,
+          maxWidth({ size: "medium" }),
           flexClass,
           flexRowClass,
           gapClass(),
