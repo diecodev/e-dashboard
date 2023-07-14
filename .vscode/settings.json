@@ -54,7 +54,8 @@
   "conventionalCommits.scopes": [
     "Config",
     "Login",
-    "Docs"
+    "Docs",
+    "Tags"
   ],
   "css.lint.unknownAtRules": "ignore",
   "exportall.config.folderListener": [
