@@ -1,5 +1,5 @@
-[ ] Create Admin User
-[ ] Login Page Form
+[x] Create Admin User
+[x] Login Page Form
 [ ] Create Tags Form (categories)
 [ ] Create Product Form
 [ ] Upload Pics to Cloudinary Before Push Product Data to DB
