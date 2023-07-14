@@ -8,6 +8,13 @@
       "when": 1689137450285,
       "tag": "0000_wild_inhumans",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1689289395730,
+      "tag": "0001_small_photon",
+      "breakpoints": true
     }
   ]
 }
