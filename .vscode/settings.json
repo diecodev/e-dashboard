@@ -59,7 +59,8 @@
   ],
   "css.lint.unknownAtRules": "ignore",
   "exportall.config.folderListener": [
-    "/src/components/basics"
+    "/src/components/basics",
+    "/src/components/category"
   ],
   "exportall.config.relExclusion": [
     "/src/components/basics/index.ts",
