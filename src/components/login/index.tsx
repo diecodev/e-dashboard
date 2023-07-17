@@ -1,16 +1,28 @@
-import { formClass, importantTitleClass } from "../basics/styles";
+import { formClass, importantTitleClass, maxWidth } from "../basics/styles";
 import { Form } from "@builder.io/qwik-city";
-import { component$ } from "@builder.io/qwik";
+import { component$, useTask$ } from "@builder.io/qwik";
 import { useLoginAction } from "~/routes/login";
-import { Input, ButtonPrimary, Fieldset, Label, ErrorMessage } from "../basics";
+import { Input, ButtonPrimary, Fieldset, Label } from "../basics";
+import { Toaster, toast } from "@moick/qwik";
 
 export const LoginForm = component$(() => {
   const action = useLoginAction();
 
+  useTask$(({ track }) => {
+    const isFailed = track(() => action.value?.failed);
+
+    if (isFailed)
+      toast.error(
+        action.value?.fieldErrors?.email ||
+          action.value?.fieldErrors?.password ||
+          action.value?.message
+      );
+  });
+
   return (
     <>
       <h2 class={importantTitleClass()}>Sign in to UrDash</h2>
-      <Form action={action} class={formClass()}>
+      <Form action={action} class={[formClass, maxWidth()]}>
         <Fieldset>
           <Label for="email">Email address</Label>
           <Input
@@ -35,15 +47,11 @@ export const LoginForm = component$(() => {
           />
         </Fieldset>
 
-        <ErrorMessage>
-          {action.value?.fieldErrors?.email ||
-            action.value?.fieldErrors?.password ||
-            action.value?.message}
-        </ErrorMessage>
         <ButtonPrimary type="submit" disabled={action.isRunning}>
           Sign In
         </ButtonPrimary>
       </Form>
+      <Toaster />
     </>
   );
 });

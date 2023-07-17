@@ -120,7 +120,7 @@ export const flexItemsClass = recipe({
         flex: 1,
       },
       auto: {
-        flex: "auto",
+        flex: "unset",
       },
     },
   },

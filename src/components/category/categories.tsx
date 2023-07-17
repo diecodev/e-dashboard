@@ -11,10 +11,14 @@ import {
   maxWidth,
 } from "../basics/styles";
 import { PlusIcon } from "../icons";
+import { useCategories, useCreateCategory } from "~/routes/tags";
 
 export const CategoryForm = component$(() => {
+  const data = useCategories();
+  const action = useCreateCategory();
+
   return (
-    <Form class={[formClass, maxWidth({ size: "medium" })]}>
+    <Form action={action} class={[formClass, maxWidth({ size: "medium" })]}>
       <h2
         class={[
           importantTitleClass({
@@ -27,19 +31,19 @@ export const CategoryForm = component$(() => {
       >
         Create category
       </h2>
-      <div
-        class={[
-          formClass,
-          maxWidth({ size: "medium" }),
-          flexClass,
-          flexRowClass,
-          gapClass(),
-          flexItemsClass({ align: "end" }),
-        ]}
-        style={{ padding: 0 }}
-      >
-        <Fieldset classArr={[flexItemsClass({ flex: 1, align: "stretch" })]}>
-          <Label for="name">Name</Label>
+      <Fieldset>
+        <Label for="name">Name</Label>
+        <div
+          class={[
+            formClass,
+            maxWidth({ size: "medium" }),
+            flexClass,
+            flexRowClass,
+            gapClass(),
+            flexItemsClass({ flex: 1, align: "stretch" }),
+          ]}
+          style={{ padding: 0 }}
+        >
           <Input
             id="name"
             type="text"
@@ -47,16 +51,23 @@ export const CategoryForm = component$(() => {
             placeholder="Skin Care"
             required
             minLength={3}
+            style={{ flex: 1 }}
           />
-        </Fieldset>
-        <ButtonPrimary
-          type="submit"
-          classArr={[flexClass, flexRowClass, gapClass({ size: "small" })]}
-        >
-          <PlusIcon />
-          Add new
-        </ButtonPrimary>
-      </div>
+          <ButtonPrimary
+            type="submit"
+            classArr={[
+              flexClass,
+              flexRowClass,
+              gapClass({ size: "small" }),
+              flexItemsClass({ align: "center" }),
+            ]}
+            style={{ lineHeight: 1 }}
+          >
+            <PlusIcon />
+            Add new
+          </ButtonPrimary>
+        </div>
+      </Fieldset>
     </Form>
   );
 });
