@@ -12,8 +12,8 @@ devDependencies:
     specifier: 1.2.6
     version: 1.2.6
   '@moick/qwik':
-    specifier: 1.0.1
-    version: 1.0.1
+    specifier: 1.0.2
+    version: 1.0.2
   '@types/bcrypt':
     specifier: 5.0.0
     version: 5.0.0
@@ -42,8 +42,8 @@ devDependencies:
     specifier: 5.1.0
     version: 5.1.0
   drizzle-kit:
-    specifier: 0.19.5
-    version: 0.19.5
+    specifier: 0.19.6
+    version: 0.19.6
   drizzle-orm:
     specifier: 0.27.2
     version: 0.27.2(postgres@3.3.5)
@@ -1078,8 +1078,8 @@ packages:
       - supports-color
     dev: true
 
-  /@moick/qwik@1.0.1:
-    resolution: {integrity: sha512-vCdfegsS4/+We29gTjy2xnBHmIVZ7EPN+jBRSsiXQapAWpv6HRhCJkAix1tNnyJaEeQ/2FdCijDeBxrha7TYqA==}
+  /@moick/qwik@1.0.2:
+    resolution: {integrity: sha512-Zs1NygLWamLfRa+5O1cdoHwimR6EfK0qD8XpA3+c30gWBB3P90p1HxQaWxY5DUokS2Z656efDTk7I6fQ8E4PWg==}
     engines: {node: '>=15.0.0'}
     dev: true
 
@@ -1975,8 +1975,8 @@ packages:
       wordwrap: 1.0.0
     dev: true
 
-  /drizzle-kit@0.19.5:
-    resolution: {integrity: sha512-eX+M4QpPLbbZwLUamCxRhS9Y98ppZLk3jew2FghKoAr7bGEC3omFIm+YPiwtrhe/alZZgrJCn/1TDTRHwo1r9w==}
+  /drizzle-kit@0.19.6:
+    resolution: {integrity: sha512-Feb/9yKPn6rZI95NvaUwTwpfRJkwGx9MR7ObhUropm+rEwcT9BfHdiJXGzLf4oNcoSFCqmY7zIj8j92lusjyRA==}
     hasBin: true
     dependencies:
       '@drizzle-team/studio': 0.0.1

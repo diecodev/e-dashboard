@@ -24,7 +24,7 @@
   "devDependencies": {
     "@builder.io/qwik": "1.2.6",
     "@builder.io/qwik-city": "1.2.6",
-    "@moick/qwik": "1.0.1",
+    "@moick/qwik": "1.0.2",
     "@types/bcrypt": "5.0.0",
     "@types/eslint": "8.44.0",
     "@types/node": "20.4.2",
@@ -34,7 +34,7 @@
     "@vanilla-extract/recipes": "0.4.0",
     "@vanilla-extract/vite-plugin": "3.8.2",
     "bcrypt": "5.1.0",
-    "drizzle-kit": "0.19.5",
+    "drizzle-kit": "0.19.6",
     "drizzle-orm": "0.27.2",
     "eslint": "8.45.0",
     "eslint-plugin-qwik": "1.2.6",

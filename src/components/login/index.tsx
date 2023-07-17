@@ -9,13 +9,15 @@ export const LoginForm = component$(() => {
   const action = useLoginAction();
 
   useTask$(({ track }) => {
-    const isFailed = track(() => action.value?.failed);
+    track(() => action.value?.failed);
 
-    if (isFailed)
+    if (action.value?.failed)
+      // WARN this is a qwik zod schema validation error...
       toast.error(
-        action.value?.fieldErrors?.email ||
-          action.value?.fieldErrors?.password ||
-          action.value?.message
+        // @ts-expect-error: qwik-zod-schema-error
+        action.value.fieldErrors?.email ??
+          action.value.fieldErrors?.password ??
+          action.value.message
       );
   });
 
